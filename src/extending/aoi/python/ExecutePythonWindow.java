@@ -10,7 +10,6 @@ import java.io.FileWriter;
 import artofillusion.ArtOfIllusion;
 import artofillusion.LayoutWindow;
 import artofillusion.script.ScriptEditor;
-import artofillusion.script.ScriptRunner;
 import artofillusion.script.ToolScript;
 import artofillusion.ui.EditingWindow;
 import artofillusion.ui.Translate;
@@ -66,7 +65,8 @@ public class ExecutePythonWindow extends BFrame {
     setVisible(true);
   }
 
-  private void closeWindow()
+  @SuppressWarnings("unused")
+	private void closeWindow()
   {
     lastScript = scriptText.getText();
     dispose();
@@ -74,7 +74,8 @@ public class ExecutePythonWindow extends BFrame {
 
   /** Prompt the user to load a script. */
 
-  private void loadScript()
+  @SuppressWarnings("unused")
+	private void loadScript()
   {
     BFileChooser fc = new BFileChooser(BFileChooser.OPEN_FILE, Translate.text("selectScriptToLoad"));
     fc.setDirectory(scriptDir);
@@ -115,7 +116,8 @@ public class ExecutePythonWindow extends BFrame {
 
   /** Prompt the user to save a script. */
 
-  private void saveScript()
+  @SuppressWarnings("unused")
+	private void saveScript()
   {
     BFileChooser fc = new BFileChooser(BFileChooser.SAVE_FILE, Translate.text("saveScriptToFile"));
     fc.setDirectory(scriptDir);
@@ -165,7 +167,8 @@ public class ExecutePythonWindow extends BFrame {
 
   /** Execute the script. */
 
-  private void executeScript()
+  @SuppressWarnings("unused")
+	private void executeScript()
   {
     String language = (String) languageChoice.getSelectedValue();
     try

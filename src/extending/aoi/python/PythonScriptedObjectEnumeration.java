@@ -4,10 +4,6 @@ import java.util.Enumeration;
 
 import artofillusion.Scene;
 import artofillusion.object.ObjectInfo;
-import artofillusion.script.ScriptedObjectController;
-import artofillusion.*;
-import artofillusion.object.*;
-import java.util.*;
 
 
 public class PythonScriptedObjectEnumeration implements Enumeration<ObjectInfo> {

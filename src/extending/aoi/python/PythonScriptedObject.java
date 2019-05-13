@@ -6,9 +6,6 @@ import artofillusion.object.*;
 import artofillusion.script.ObjectScript;
 import artofillusion.script.ScriptException;
 import artofillusion.script.ScriptedObject;
-import artofillusion.script.ScriptedObjectController;
-import artofillusion.script.ScriptedObjectEditorWindow;
-import artofillusion.script.ScriptedObjectEnumeration;
 import artofillusion.ui.*;
 import java.io.*;
 import java.util.*;
@@ -368,7 +365,8 @@ public class PythonScriptedObject extends ScriptedObject {
 
     /* Create a duplicate of this keyframe for a (possibly different) object. */
 
-    @Override
+    @SuppressWarnings("unchecked")
+		@Override
     public Keyframe duplicate(Object owner)
     {
       ScriptedObjectKeyframe key = new ScriptedObjectKeyframe((PythonScriptedObject) ((ObjectInfo) owner).getObject(), new String [0], new double [0]);

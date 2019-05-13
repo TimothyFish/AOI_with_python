@@ -9,7 +9,6 @@ import java.io.FileWriter;
 
 import artofillusion.ArtOfIllusion;
 import artofillusion.object.ObjectInfo;
-import artofillusion.script.ScriptEditor;
 import artofillusion.script.ScriptedObject;
 import artofillusion.ui.EditingWindow;
 import artofillusion.ui.Translate;

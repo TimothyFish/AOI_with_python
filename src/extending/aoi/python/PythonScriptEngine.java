@@ -1,14 +1,10 @@
 package extending.aoi.python;
 
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Map;
 
 import org.python.core.PyCode;
-import org.python.core.PyException;
-import org.python.core.PyInteger;
-import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
 
 import artofillusion.LayoutWindow;
@@ -27,6 +23,7 @@ public class PythonScriptEngine implements ScriptEngine {
   private PythonInterpreter interp;
   private StringBuilder imports;
   private int numImports = 0;
+	@SuppressWarnings("unused")
 	private PrintWriter thePrintWriter;
 	
   public PythonScriptEngine(ClassLoader parent)
