@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+
+<extension name="AOI with Python" version="0.1" >
+  <author>Timothy Fish</author>
+  <date>May 2019</date>
+
+  <plugin class="extending.aoi.python.AOIPythonPlugin" />
+
+  <description>This plugin adds the Python scripting language to Art of Illusion.</description>
+  <comments>This plugin adds the Python scripting language to Art of Illusion. </comments>
+  <history>
+     <log version="0.1" date="May 2019" author="Timothy Fish" >- Initial Version</log>
+  </history>
+</extension>
