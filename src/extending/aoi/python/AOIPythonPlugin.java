@@ -1,3 +1,22 @@
+/**
+    AOI with Python Plugin
+    A plugin that didn't make it into the book 
+    "Extending Art of Illusion: Scripting for 3D Artists"
+    Copyright (C) 2019  Timothy Fish
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>
+ */
 package extending.aoi.python;
 
 import java.io.File;
@@ -60,7 +79,7 @@ public class AOIPythonPlugin  implements Plugin{
 
 			BMenuItem menuItem2 = Translate.menuItem("Edit Python...", this, "editPythonMenuAction");
 			toolsMenu.add(menuItem2, posEditScript+1);
-			
+
 			break;
 		}
 
@@ -68,65 +87,65 @@ public class AOIPythonPlugin  implements Plugin{
 
 	@SuppressWarnings("unused")
 	private void createPythonObjectMenuAction() {	
-    // Prompt the user to select a name and, optionally, a predefined script.
+		// Prompt the user to select a name and, optionally, a predefined script.
 
-    BTextField nameField = new BTextField(Translate.text("Script"));
-    BComboBox scriptChoice = new BComboBox();
-    scriptChoice.add(Translate.text("newScript"));
-    String files[] = new File(ArtOfIllusion.OBJECT_SCRIPT_DIRECTORY).list();
-    ArrayList<String> scriptNames = new ArrayList<String>();
-    if (files != null)
-      for (String file : files)
-      {
-        try
-        {
-          PythonScriptRunner.getLanguageForFilename(file);
-          scriptChoice.add(file.substring(0, file.lastIndexOf(".")));
-          scriptNames.add(file);
-        }
-        catch (IllegalArgumentException ex)
-        {
-          // This file isn't a known scripting language.
-        }
-      }
-    ComponentsDialog dlg = new ComponentsDialog(layout, Translate.text("newScriptedObject"),
-      new Widget [] {nameField, scriptChoice}, new String [] {Translate.text("Name"), Translate.text("Script")});
-    if (!dlg.clickedOk())
-      return;
+		BTextField nameField = new BTextField(Translate.text("Script"));
+		BComboBox scriptChoice = new BComboBox();
+		scriptChoice.add(Translate.text("newScript"));
+		String files[] = new File(ArtOfIllusion.OBJECT_SCRIPT_DIRECTORY).list();
+		ArrayList<String> scriptNames = new ArrayList<String>();
+		if (files != null)
+			for (String file : files)
+			{
+				try
+				{
+					PythonScriptRunner.getLanguageForFilename(file);
+					scriptChoice.add(file.substring(0, file.lastIndexOf(".")));
+					scriptNames.add(file);
+				}
+				catch (IllegalArgumentException ex)
+				{
+					// This file isn't a known scripting language.
+				}
+			}
+		ComponentsDialog dlg = new ComponentsDialog(layout, Translate.text("newScriptedObject"),
+				new Widget [] {nameField, scriptChoice}, new String [] {Translate.text("Name"), Translate.text("Script")});
+		if (!dlg.clickedOk())
+			return;
 
-    // If they are using a predefined script, load it.
+		// If they are using a predefined script, load it.
 
-    String scriptText = "";
-    String language = PythonScriptRunner.LANGUAGES[0];
-    if (scriptChoice.getSelectedIndex() > 0)
-    {
-      try
-      {
-        File f = new File(ArtOfIllusion.OBJECT_SCRIPT_DIRECTORY, scriptNames.get(scriptChoice.getSelectedIndex()-1));
-        scriptText = ArtOfIllusion.loadFile(f);
-        language = PythonScriptRunner.getLanguageForFilename(f.getName());
-      }
-      catch (IOException ex)
-      {
-        new BStandardDialog("", new String [] {Translate.text("errorReadingScript"), ex.getMessage() == null ? "" : ex.getMessage()}, BStandardDialog.ERROR).showMessageDialog(layout);
-        return;
-      }
-    }
-    ScriptedObject obj = new PythonScriptedObject(scriptText, language);
-    ObjectInfo info = new ObjectInfo(obj, new CoordinateSystem(), nameField.getText());
-    UndoRecord undo = new UndoRecord(layout, false);
-    int sel[] = layout.getSelectedIndices();
-    layout.addObject(info, undo);
-    undo.addCommand(UndoRecord.SET_SCENE_SELECTION, new Object [] {sel});
-    layout.setSelection(layout.getScene().getNumObjects()-1);
-    layout.setUndoRecord(undo);
-    layout.updateImage();
-    layout.editObjectCommand();
+		String scriptText = "";
+		String language = PythonScriptRunner.LANGUAGES[0];
+		if (scriptChoice.getSelectedIndex() > 0)
+		{
+			try
+			{
+				File f = new File(ArtOfIllusion.OBJECT_SCRIPT_DIRECTORY, scriptNames.get(scriptChoice.getSelectedIndex()-1));
+				scriptText = ArtOfIllusion.loadFile(f);
+				language = PythonScriptRunner.getLanguageForFilename(f.getName());
+			}
+			catch (IOException ex)
+			{
+				new BStandardDialog("", new String [] {Translate.text("errorReadingScript"), ex.getMessage() == null ? "" : ex.getMessage()}, BStandardDialog.ERROR).showMessageDialog(layout);
+				return;
+			}
+		}
+		ScriptedObject obj = new PythonScriptedObject(scriptText, language);
+		ObjectInfo info = new ObjectInfo(obj, new CoordinateSystem(), nameField.getText());
+		UndoRecord undo = new UndoRecord(layout, false);
+		int sel[] = layout.getSelectedIndices();
+		layout.addObject(info, undo);
+		undo.addCommand(UndoRecord.SET_SCENE_SELECTION, new Object [] {sel});
+		layout.setSelection(layout.getScene().getNumObjects()-1);
+		layout.setUndoRecord(undo);
+		layout.updateImage();
+		layout.editObjectCommand();
 	}
 
 	@SuppressWarnings("unused")
 	private void editPythonMenuAction() {
 		new ExecutePythonWindow(layout);
-	  
+
 	}
 }
