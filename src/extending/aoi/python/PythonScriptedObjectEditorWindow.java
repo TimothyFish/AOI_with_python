@@ -296,7 +296,7 @@ public class PythonScriptedObjectEditorWindow  extends BFrame {
       if (ev.getWidget() == nameField)
         {
           name[current] = nameField.getText();
-//          paramList.replaceItem(name[current], current);
+          paramList.replace(current, name[current]);
         }
       else
         value[current] = valueField.getValue();

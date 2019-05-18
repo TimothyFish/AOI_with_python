@@ -118,23 +118,26 @@ public class PythonScriptedObject extends ScriptedObject {
 	}
 
   /** Set the name of the i'th parameter. */
-
+	@Override
   public void setParameterName(int i, String name)
   {
+		super.setParameterName(i, name);
     paramName[i] = name;
   }
 
   /** Set the value of the i'th parameter. */
-
+  @Override
   public void setParameterValue(int i, double value)
   {
+  	super.setParameterValue(i, value);
     paramValue[i] = value;
   }
 
   /** Set a new list of parameters. */
-
+  @Override
   public void setParameters(String names[], double values[])
   {
+  	super.setParameters(names, values);
     paramName = names;
     paramValue = values;
   }
